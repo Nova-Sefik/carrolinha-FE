@@ -1,5 +1,5 @@
 import type {
-  AnomaliesResponse, HexResponse, LineProfile, Meta, OperatorId, Overview, SegmentId,
+  AnomaliesResponse, GoldenResponse, HexResponse, LineProfile, Meta, OperatorId, Overview, SegmentId,
   StopDetail, StopsResponse, TransfersResponse,
 } from './types'
 
@@ -44,4 +44,5 @@ export const api = {
   line: (id: string, day: string) => get<LineProfile>(`/api/lines/${encodeURIComponent(id)}/profile`, { day }),
   transfers: (day: string) => get<TransfersResponse>('/api/transfers', { day }),
   anomalies: (day?: string) => get<AnomaliesResponse>('/api/anomalies', { day }),
+  golden: () => get<GoldenResponse>('/api/golden'),
 }

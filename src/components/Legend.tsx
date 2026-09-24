@@ -30,6 +30,14 @@ export default function Legend() {
     title = `Load vs capacity at ${hourLabel(hour)}`
     rows = LOAD.map((c, i) => ({ color: c, label: LOAD_LABELS[i] }))
     note = 'Lines with trip-level capacity. Click a line to inspect it.'
+  } else if (mode === 'golden') {
+    title = 'Golden lines (typical weekday)'
+    rows = [
+      { color: '#c48c00', label: 'strong · 60+ riders/h at peak' },
+      { color: '#e2aa1e', label: 'viable · 30–60 riders/h' },
+      { color: '#e8c878', label: 'weak · under 30 riders/h' },
+    ]
+    note = 'Width = projected riders/day. Click a line to see how people travel today (grey) and what it would replace.'
   } else {
     title = 'Median transfer wait'
     rows = [
@@ -37,7 +45,7 @@ export default function Legend() {
       { color: WAIT.slow, label: '8–11 min', ring: true },
       { color: WAIT.fragile, label: '12 min or more', ring: true },
     ]
-    note = 'Colour = worst median wait of a significant connection. Ring size = transfers/day. Line width = journeys/day.'
+    note = 'The 20 busiest interchanges. Lines = most common journeys that change operator, drawn through the hub where people change. Click a ring or a line to isolate it.'
   }
 
   return (

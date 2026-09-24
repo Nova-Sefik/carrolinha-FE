@@ -65,6 +65,9 @@ export function useTransfers() {
   return useQuery({ queryKey: ['transfers', day], queryFn: () => api.transfers(day), ...smooth })
 }
 
+/** Golden lines (typical weekday, not filtered by day). */
+export const useGolden = () => useQuery({ queryKey: ['golden'], queryFn: api.golden, staleTime: Infinity })
+
 /** The whole week's alerts (the list is not filtered by day). */
 export const useAnomalies = () => useQuery({ queryKey: ['anomalies', 'week'], queryFn: () => api.anomalies() })
 

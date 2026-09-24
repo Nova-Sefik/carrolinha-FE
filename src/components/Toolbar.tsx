@@ -7,6 +7,7 @@ const MODES: [Mode, string][] = [
   ['load', 'Load vs capacity'],
   ['anomalies', 'Anomalies'],
   ['transfers', 'Transfers'],
+  ['golden', 'Golden lines'],
 ]
 const LAYERS: [Layer, string][] = [['hex', 'Hexagons'], ['stops', 'Stops']]
 const SEG_SHORT: Record<string, string> = { all: 'All passengers', sub23: 'Sub-23', senior: '65+' }
@@ -23,7 +24,7 @@ export default function Toolbar() {
           <button key={id} type="button" className="tab" aria-pressed={id === mode} onClick={() => {
               set({ mode: id })
               // Transfer arcs span the region: pull the camera back. (The load view frames its lines itself.)
-              if (id === 'transfers') useApp.getState().flyTo(HOME.lon, HOME.lat, HOME.zoom)
+              if (id === 'transfers') useApp.getState().flyTo(HOME.lon, HOME.lat, HOME.zoom)  // golden frames itself
             }}>
             {label}
           </button>

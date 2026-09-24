@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import type { OperatorId, SegmentId } from './api/types'
 
-export type Mode = 'demand' | 'load' | 'anomalies' | 'transfers'
+export type Mode = 'demand' | 'load' | 'anomalies' | 'transfers' | 'golden'
 export type Layer = 'hex' | 'stops'
 
 export const ALL_OPS: OperatorId[] = ['metro', 'carris', 'cm', 'rail', 'ferry', 'other']
@@ -25,6 +25,10 @@ interface AppState {
   whatif: number
   alertId: string | null
   xsel: string | null
+  /** selected flow on the transfers map: `${from}>${to}` */
+  fsel: string | null
+  /** selected golden line */
+  gsel: string | null
   reviewed: Record<string, boolean>
   playing: boolean
   fly: FlyTarget | null
@@ -47,6 +51,8 @@ export const useApp = create<AppState>((set, get) => ({
   whatif: 0,
   alertId: null,
   xsel: null,
+  fsel: null,
+  gsel: null,
   reviewed: {},
   playing: false,
   fly: null,

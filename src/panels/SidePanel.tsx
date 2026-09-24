@@ -1,5 +1,6 @@
 import { useApp } from '../state'
 import AnomalyPanel from './AnomalyPanel'
+import GoldenPanel from './GoldenPanel'
 import LinePanel from './LinePanel'
 import OverviewPanel from './OverviewPanel'
 import StopPanel from './StopPanel'
@@ -14,6 +15,7 @@ export default function SidePanel() {
       {mode === 'load' && <LinePanel />}
       {mode === 'anomalies' && <AnomalyPanel />}
       {mode === 'transfers' && <TransferPanel />}
+      {mode === 'golden' && <GoldenPanel />}
     </aside>
   )
 }

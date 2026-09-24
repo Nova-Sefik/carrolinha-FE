@@ -218,6 +218,18 @@ export interface Flow {
   to_lon: number;
   to_lat: number;
   journeys: number;
+  /** Hubs where people change vehicle, in order (draw from -> via... -> to). */
+  via: Place[];
+  /** Operator of each leg, in order. */
+  modes: OperatorId[];
+  /** Share of this origin-destination's journeys that follow this chain. */
+  via_share: number | null;
+}
+export interface Place {
+  stop_id: string;
+  name: string;
+  lat: number;
+  lon: number;
 }
 export interface TransfersResponse {
   date: string;
@@ -246,3 +258,45 @@ export interface AnomaliesResponse {
   alerts: Alert[];
   method: string;
 }
+
+// -------------------------------------------------------------- /api/golden
+export interface GoldenLeg { operator: OperatorId; line_id: string; label: string; name: string }
+export interface GoldenPath { legs: GoldenLeg[]; via: Place[]; journeys_per_day: number; share: number }
+export interface GoldenReplaced {
+  operator: OperatorId; line_id: string; label: string; name: string;
+  riders_removed_per_day: number; line_riders_per_day: number; share_of_line: number | null;
+}
+export interface GoldenHub extends Place {
+  transfers_removed_per_day: number; hub_boardings_per_day: number; share_of_hub: number | null;
+}
+export interface GoldenDirect { operator: OperatorId; line_id: string; label: string; name: string; journeys_per_day: number }
+export interface GoldenFlag { level: "benefit" | "info" | "risk"; text: string }
+export interface GoldenRoute {
+  route_id: string;
+  rank: number;
+  from: Place;
+  to: Place;
+  distance_km: number;
+  multi_per_day: number;
+  direct_per_day: number;
+  multi_share: number;
+  avg_legs: number;
+  current_min: number | null;
+  projected_min: number;
+  saved_min: number | null;
+  riders_per_day: number;
+  person_hours_per_day: number | null;
+  peak_hour: number | null;
+  peak_riders: number | null;
+  trips_needed_peak: number | null;
+  share_a_to_b: number | null;
+  spike_z: number;
+  verdict: "strong" | "viable" | "weak";
+  flags: GoldenFlag[];
+  hourly: { hour: number; journeys: number }[];
+  paths: GoldenPath[];
+  replaced: GoldenReplaced[];
+  hubs: GoldenHub[];
+  direct_lines: GoldenDirect[];
+}
+export interface GoldenResponse { routes: GoldenRoute[]; method: string; assumptions: Record<string, number> }
