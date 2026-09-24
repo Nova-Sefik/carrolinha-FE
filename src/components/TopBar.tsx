@@ -12,7 +12,7 @@ export default function TopBar() {
       <div className="brand">
         <Logo />
         <div>
-          <div className="brand-name">Pulso</div>
+          <div className="brand-name">Carrolinha</div>
           <div className="brand-sub">Metropolitan demand twin for TML</div>
         </div>
       </div>

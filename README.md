@@ -1,17 +1,17 @@
-# pulso-web
+# carrolinha-web
 
-React + Vite frontend for **Pulso** (Hack the City 2026, challenge #1). It reads the `pulso-api` FastAPI backend and draws everything from its responses. No numbers live in the frontend.
+React + Vite frontend for **Carrolinha** (Hack the City 2026, challenge #1). It reads the `carrolinha-api` FastAPI backend and draws everything from its responses. No numbers live in the frontend.
 
 ## Run it (API first, then the web app)
 
 ```bash
 # terminal 1: the API
-cd ../pulso-api
+cd ../carrolinha-api
 source .venv/bin/activate            # if you made one
 uvicorn app.main:app --reload        # http://localhost:8000
 
 # terminal 2: the web app
-cd pulso-web
+cd carrolinha-web
 npm install
 npm run dev                          # http://localhost:5173
 ```
@@ -43,7 +43,7 @@ API somewhere else (e.g. Render)? `cp .env.example .env.local` and set `VITE_API
 | `GET /api/transfers` | `TransferPanel`, `MapView` (Transfers) | interchange rings (colour = worst median wait), curved flow lines, pair breakdown, fragile note |
 | `GET /api/anomalies` | `AnomalyPanel` | week alert list; clicking one moves the day, hour, map camera and selected stop to it |
 
-Types in `src/api/types.ts` mirror `pulso-api/app/schemas.py` one-to-one. If the backend contract changes, change them there and `npx tsc -b` lists every place that breaks.
+Types in `src/api/types.ts` mirror `carrolinha-api/app/schemas.py` one-to-one. If the backend contract changes, change them there and `npx tsc -b` lists every place that breaks.
 
 ## Behaviour worth knowing
 

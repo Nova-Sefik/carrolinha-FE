@@ -27,9 +27,9 @@ export default function App() {
         <TopBar />
         <div style={{ padding: 40, maxWidth: 640 }}>
           <div className="error-box">
-            <strong>Cannot reach the Pulso API at {API_URL}.</strong>
+            <strong>Cannot reach the Carrolinha API at {API_URL}.</strong>
             <br />
-            Start it from the <code>pulso-api</code> folder with <code>uvicorn app.main:app --reload</code>, then reload
+            Start it from the <code>carrolinha-api</code> folder with <code>uvicorn app.main:app --reload</code>, then reload
             this page. To point at another server, set <code>VITE_API_URL</code> in <code>.env.local</code>.
           </div>
         </div>
